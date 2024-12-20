@@ -9,19 +9,22 @@ pipeline {
         }
         stage('Deploy to Apache') {
             steps {
-                // Transfer index.html directly to the /var/www/html directory
+                // Transfer index.html directly to /var/www/html
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: 'apache-server',  // Matches the SSH config name
+                            configName: 'apache-server', // Matches the SSH config name
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: 'index.html',  // Make sure this matches the file in your repository
-                                    remoteDirectory: '/var/www/html/',  // Directly target the Apache root
-                                    removePrefix: '',  // Do not add any directory prefix
-                                    cleanRemote: false // Do not clean the directory to avoid removing existing files
+                                    sourceFiles: '**/index.html', // Match the file pattern
+                                    remoteDirectory: '/var/www/html/', // Target the correct directory
+                                    removePrefix: '', // No prefix to remove
+                                    cleanRemote: false // Keep existing files in the remote directory
                                 )
-                            ]
+                            ],
+                            // Execute the mv command to fix the file location
+                            execCommand: 'sudo mv /var/www/html/var/www/html/index.html /var/www/html',
+                            execTimeout: 60000 // Timeout for the command execution in milliseconds
                         )
                     ]
                 )
