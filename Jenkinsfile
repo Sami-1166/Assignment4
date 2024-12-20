@@ -3,23 +3,23 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone the GitHub repository to the Jenkins workspace
+                // Clone the GitHub repository
                 git branch: 'main', url: 'https://github.com/Sami-1166/Assignment4.git'
             }
         }
         stage('Deploy to Apache') {
             steps {
-                // Transfer index.html to the Apache server's web directory
+                // Transfer index.html directly to the /var/www/html directory
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
                             configName: 'apache-server',  // Matches the SSH config name
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: 'index.html',  // Adjust this if it's located in a subdirectory
-                                    remoteDirectory: '/var/www/html',  // Apache's web directory
-                                    removePrefix: '',  // Optional: Removes the prefix if sourceFiles is in a subdir
-                                    cleanRemote: false // Optional: Set to true if you want to remove existing files on the remote
+                                    sourceFiles: 'index.html',  // Make sure this matches the file in your repository
+                                    remoteDirectory: '/var/www/html/',  // Directly target the Apache root
+                                    removePrefix: '',  // Do not add any directory prefix
+                                    cleanRemote: false // Do not clean the directory to avoid removing existing files
                                 )
                             ]
                         )
