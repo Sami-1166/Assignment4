@@ -17,7 +17,7 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: 'index.html',  // Adjust this if it's located in a subdirectory
-                                    remoteDirectory: '',  // Apache's web directory
+                                    remoteDirectory: '/var/www/html',  // Apache's web directory
                                     removePrefix: '',  // Optional: Removes the prefix if sourceFiles is in a subdir
                                     cleanRemote: false // Optional: Set to true if you want to remove existing files on the remote
                                 )
