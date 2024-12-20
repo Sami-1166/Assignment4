@@ -18,7 +18,7 @@ pipeline {
                                 sshTransfer(
                                     sourceFiles: 'index.html',  // Make sure this matches the file in your repository
                                     remoteDirectory: '/var/www/html/',  // Directly target the Apache root
-                                    removePrefix: '/var/www/html',  // Do not add any directory prefix
+                                    removePrefix: '',  // Do not add any directory prefix
                                     cleanRemote: false // Do not clean the directory to avoid removing existing files
                                 )
                             ]
