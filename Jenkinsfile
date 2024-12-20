@@ -16,7 +16,7 @@ pipeline {
                             configName: 'apache-server', // Matches the SSH config name
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: '**/index.html', // Match the file pattern
+                                    sourceFiles: 'index.html', // Match the file pattern
                                     remoteDirectory: '/var/www/html/', // Target the correct directory
                                     removePrefix: '', // No prefix to remove
                                     cleanRemote: false // Keep existing files in the remote directory
