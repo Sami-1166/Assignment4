@@ -13,13 +13,13 @@ pipeline {
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: 'apache-server',  // Must match SSH config in Jenkins
+                            configName: 'apache-server',  // Matches the SSH config name
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: 'index.html',  // Update if in a subdirectory
+                                    sourceFiles: 'index.html',  // Adjust this if it's located in a subdirectory
                                     remoteDirectory: '/var/www/html/',  // Apache's web directory
-                                    removePrefix: '',  // Adjust if sourceFiles is in a subdirectory
-                                    cleanRemote: false // Set to true if you want to remove existing files
+                                    removePrefix: '',  // Optional: Removes the prefix if sourceFiles is in a subdir
+                                    cleanRemote: false // Optional: Set to true if you want to remove existing files on the remote
                                 )
                             ]
                         )
