@@ -25,18 +25,6 @@ pipeline {
                         )
                     ]
                 )
-                // Check if index.html was incorrectly placed and move it
-                script {
-                    sshScript remote: remoteApacheServer, script: '''
-                        # Check if the file is in the wrong directory
-                        if [ -f /var/www/html/var/www/html/index.html ]; then
-                            mv /var/www/html/var/www/html/index.html /var/www/html/index.html
-                            echo "index.html moved to /var/www/html/"
-                        else
-                            echo "index.html is already in the correct directory."
-                        fi
-                    '''
-                }
             }
         }
     }
