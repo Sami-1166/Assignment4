@@ -4,7 +4,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone your GitHub repository
-                git branch: 'main', url: 'https://github.com/your-repo/your-project.git'
+                git branch: 'main', url: 'https://github.com/Sami-1166/Assignment4.git'
             }
         }
         stage('Deploy to Apache') {
